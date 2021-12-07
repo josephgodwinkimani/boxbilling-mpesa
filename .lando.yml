@@ -1,0 +1,7 @@
+name: boxbilling-mpesa
+recipe: lemp
+config:
+  php: '7.4'
+  composer_version: '2.1.14'
+  webroot: .
+  xdebug: true

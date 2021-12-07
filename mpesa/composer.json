@@ -1,5 +1,0 @@
-{
-    "require": {
-        "safaricom/mpesa": "^1.0"
-    }
-}
