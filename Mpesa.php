@@ -48,7 +48,7 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
     {
         return array(
             'supports_one_time_payments' => true,
-            'description' => 'To setup Lipa Na M-PESA merchant account in BoxBilling you need to go to <i>https://developer.safaricom.co.ke/MyApps &gt; Sandox/Production Apps &gt; Products: M-PESA Sanbox</i> and copy Consumer Key and Consumer Secret and paste here in form fields.',
+            'description' => 'To setup Lipa Na M-PESA merchant account in BoxBilling you need to go to <i>https://developer.safaricom.co.ke/MyApps &gt; Sandox/Production Apps &gt; Products: M-PESA Sandbox</i> and copy Consumer Key and Consumer Secret and paste here in form fields.',
             'form' => array(
                 'shortCode' => array('text', array(
                     'label' => 'ShortCode',
@@ -197,6 +197,7 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
 
             $c2bTransaction=$mpesa->c2b($ShortCode, $CommandID, $Amount, $Msisdn, $BillRefNumber );
             
+            
             $tx->invoice_id = $invoice->id;
             $tx->txn_status = $status;          
             $tx->amount = $Amount;  
@@ -219,7 +220,9 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
             if ($tx->invoice_id) {
                 $invoiceService->payInvoiceWithCredits($invoice);
             }
-            $invoiceService->doBatchPayWithCredits(array('client_id' => $client->id));            
+            $invoiceService->doBatchPayWithCredits(array('client_id' => $client->id));  
+            
+            
            
         } catch (Exception\Declined $exception) {              
             $payment = $exception->getResult();           
@@ -230,7 +233,12 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
         $tx->status = 'pending';
         $tx->updated_at = date('Y-m-d H:i:s');
         $this->di['db']->store($tx); 
-        
+
+        if(isset($_SERVER['HTTP_REFERER'])) {
+                    
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        }
     }
 
     protected function _generateForm(Model_Invoice $invoice)
@@ -271,7 +279,7 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
                         </div>
                     </div>
                 </form>
-                <div id="3dform"></div>
+                <div id="g_form"></div>
                 <style>
                 .mpesa_box label{}
                 .mpesa_box input{width:100%;height: 30px;}
