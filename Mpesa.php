@@ -202,7 +202,8 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
             $tx->txn_status = $status;          
             $tx->amount = $Amount;  
             $tx->txn_id = $data['post']['transaction_id'];            
-            $tx->currency = $invoice->currency;          
+            $tx->currency = $invoice->currency;  
+            $tx->note =  $Msisdn;     
 
             $bd = array(
                 'amount' => $tx->amount,
