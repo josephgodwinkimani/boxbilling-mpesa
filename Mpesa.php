@@ -263,6 +263,15 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
 
         $form = '<form action=":callbackUrl" method="POST" class="mpesa_form" data-api-redirect=":redirectUrl">';
         $form .= '<div class="mpesa_box">';
+        $form .= '<p class="mpesa_instructions_header">INSTRUCTIONS - HOW TO PAY</p>';
+        //$form .= '<p class="mpesa_instructions">Go to your Sim Toolkit</p>';
+        //$form .= '<p class="mpesa_instructions">Select M-PESA</p>';
+        //$form .= '<p class="mpesa_instructions">Select Lipa na M-PESA</p>';
+        $form .= '<p class="mpesa_instructions">Select <b>PayBill</b> in SIM TOOLKIT</p>';
+        $form .= '<p class="mpesa_instructions">Enter Business No. xxxxx</p>';
+        $form .= '<p class="mpesa_instructions">Enter Account No. xxxxx</p>';
+        $form .= '<p class="mpesa_instructions">Enter Amount as: <span class="amount">'. number_format($dataAmount, 2) .'</span></p>';
+        //$form .= '<p class="mpesa_instructions">Enter your secret service PIN</p>';
         $form .= '<label for="msisdn">Msisdn:</label>';
         $form .= '<input type="text" name="msisdn" id="msisdn" required />';
         $form .= '<label for="transaction_id">Transaction ID:</label>';
@@ -283,7 +292,10 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
                 <div id="g_form"></div>
                 <style>
                 .mpesa_box label{}
+                .mpesa_instructions_header{color:red;font-weight:bold;}
+                .mpesa_instructions{color:green;}
                 .mpesa_box input{width:100%;height: 30px;}
+                .amount{font-weight:bold;}
                 .mpesa_form input.submit{background-color: #0A77BA;color: #FFF;border: none;padding: 10px;float: right;margin-bottom: 17px;}
                 .mpesa_submit_box{float:left;width:100%;     margin: 20px 0 50px 0;}
                 .mpesa_submit_box div{float: right;text-align: center;height: 39px;line-height: 30px;margin-right: 18px;font-size: 16px;font-weight: bold;}
