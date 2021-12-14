@@ -285,7 +285,7 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
                             <input class="submit" type="submit" name="sub" value=":label"/>
                         </div>
                         <div>
-                            Order total: ' . number_format($dataAmount, 2) . ' :currency
+                        Order total: :currency ' . number_format($dataAmount, 2) . ' 
                         </div>
                     </div>
                 </form>
