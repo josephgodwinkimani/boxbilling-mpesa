@@ -272,7 +272,7 @@ class Payment_Adapter_Mpesa implements \Box\InjectionAwareInterface
         $form .= '<p class="mpesa_instructions">Enter Account No. xxxxx</p>';
         $form .= '<p class="mpesa_instructions">Enter Amount as: <span class="amount">'. number_format($dataAmount, 2) .'</span></p>';
         //$form .= '<p class="mpesa_instructions">Enter your secret service PIN</p>';
-        $form .= '<label for="msisdn">Msisdn:</label>';
+        $form .= '<label for="msisdn">Mobile Number:</label>';
         $form .= '<input type="text" name="msisdn" id="msisdn" required />';
         $form .= '<label for="transaction_id">Transaction ID:</label>';
         $form .= '<input type="text" name="transaction_id" id="transaction_id" required />';
